@@ -1,9 +1,9 @@
 # Delivery Order Price Calculator (DOPC)
 
 ## Overview
-The **Delivery Order Price Calculator (DOPC)** is a robust backend service designed to calculate the total price and a detailed price breakdown for delivery orders. This service integrates seamlessly with the Wolt Home Assignment API to fetch real-time venue data, ensuring accurate and dynamic calculations. 
+The **Delivery Order Price Calculator (DOPC)** is a backend service developed to compute the total delivery order cost along with a detailed price breakdown. It leverages the Wolt Home Assignment API to fetch real-time venue data, ensuring precise and dynamic pricing calculations.
 
-Built using **FastAPI**, this project demonstrates high-quality engineering principles with a focus on correctness, maintainability, and efficiency.
+Built using **FastAPI**, the project prioritizes correctness, maintainability, and performance, adhering to modern software engineering standards.
 
 ---
 
@@ -201,9 +201,11 @@ constants:
   FAILURE: 400
   SIMPLE: 0
   HAVERSINE: 1
+  METHOD_DISTANCE_CALCULATION: 0
   O_1: "O_1"
   O_n: "O_n"
   O_Log_n: "O_Log_n"
+  METHOD_RANGE_PARSING: "O_Log_n"
 ```
 
 ---

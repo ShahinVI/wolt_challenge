@@ -1,7 +1,7 @@
 from typing import Tuple, Dict, Any, List
 from bisect import bisect_right
 
-from utils.config_loader import O_1, O_Log_n, O_n, SUCCESS, FAILURE, logging
+from utils.config_loader import O_1, O_Log_n, O_n, SUCCESS, FAILURE, logging, METHOD_RANGE_PARSING
 from utils.validator import validate_inputs
 
 from services.venue_processor import process_venue_slug, location_api_link_return, extract_delivery_specs, extract_static_coordinates
@@ -14,7 +14,7 @@ def process_total_cost(
     order_minimum_no_surcharge: int,
     base_price_delivery_fee: int,
     distance_ranges_dict: List[Dict[str, Any]],
-    method: str = O_Log_n
+    method: str = METHOD_RANGE_PARSING
 ) -> Tuple[Dict[str, Any], int, str]:
     """
     Processes the total cost of the order, including the delivery fee, small order surcharge, and total price.

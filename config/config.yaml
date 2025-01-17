@@ -7,9 +7,11 @@ constants:
   FAILURE: 400
   SIMPLE: 0
   HAVERSINE: 1
+  METHOD_DISTANCE_CALCULATION: 0
   O_1: "O_1"
   O_n: "O_n"
   O_Log_n: "O_Log_n"
+  METHOD_RANGE_PARSING: "O_Log_n"
 
 countries_api:
   DE:

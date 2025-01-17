@@ -1,14 +1,14 @@
 import math
 from typing import Tuple
 
-from utils.config_loader import SIMPLE, HAVERSINE, SUCCESS, FAILURE, logging
+from utils.config_loader import SIMPLE, HAVERSINE, SUCCESS, FAILURE, logging, METHOD_DISTANCE_CALCULATION
 
 def calculate_distance(
     user_lat: float, 
     user_lon: float, 
     venue_lat: float, 
     venue_lon: float, 
-    method: int = SIMPLE
+    method: int = METHOD_DISTANCE_CALCULATION
 ) -> Tuple[int, int, str]:
     """
     Calculates the distance between two geographic points using the specified method.
