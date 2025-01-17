@@ -35,8 +35,8 @@ Built using **FastAPI**, this project demonstrates high-quality engineering prin
 ### Steps
 1. **Clone the Repository**
 ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/ShahinVI/wolt_challenge.git
+   cd wolt_challenge
 ```
 
 2. **Create a Virtual Environment**
@@ -149,17 +149,17 @@ curl "http://127.0.0.1:8000/api/v1/delivery-order-price?venue_slug=home-assignme
 ```
 
 Example response:
-    ```json
-        {
-            "total_price": 1690,
-            "small_order_surcharge": 0,
-            "cart_value": 1500,
-            "delivery": {
-                "fee": 190,
-                "distance": 123
-            }
-        }
-    ```
+```json
+{
+    "total_price": 1690,
+    "small_order_surcharge": 0,
+    "cart_value": 1500,
+    "delivery": {
+        "fee": 190,
+        "distance": 123
+    }
+}
+```
 
 ---
 
