@@ -163,6 +163,111 @@ Example response:
 
 ---
 
+## Configuration (config/config.yaml)
+The `config.yaml` file contains all the key settings and parameters needed to configure the application. Below is a detailed breakdown of its sections:
+
+---
+
+### 1. Logging
+Configures the logging behavior of the application.
+
+**Keys:**
+- `level`: The logging level (e.g., INFO, DEBUG, ERROR).
+- `format`: The format of log messages, including timestamp, log level, and message.
+
+Example:
+```yaml
+logging:
+  level: INFO
+  format: '%(asctime)s - %(levelname)s - %(message)s'
+```
+
+---
+
+### 2. Constants
+Defines globally used constants for success/failure codes and algorithm options for delivery cost calculations.
+
+**Keys:**
+- `SUCCESS`: HTTP status code for successful responses (default: 200).
+- `FAILURE`: HTTP status code for error responses (default: 400).
+- `SIMPLE`: Option for simple distance calculation using Pythagorean theorem.
+- `HAVERSINE`: Option for precise distance calculation using the haversine formula.
+- `O_1`, `O_n`, `O_Log_n`: Different algorithmic approaches for delivery cost calculation based on distance ranges.
+
+Example:
+```yaml
+constants:
+  SUCCESS: 200
+  FAILURE: 400
+  SIMPLE: 0
+  HAVERSINE: 1
+  O_1: "O_1"
+  O_n: "O_n"
+  O_Log_n: "O_Log_n"
+```
+
+---
+
+### 3. Countries API
+Contains API endpoints for fetching venue-related data (static and dynamic) based on the country.
+
+**Keys:**
+- Each country is identified by a two-letter code (e.g., DE for Germany, FI for Finland).
+  - `static`: The endpoint to fetch static venue data (e.g., coordinates).
+  - `dynamic`: The endpoint to fetch dynamic venue data (e.g., delivery fees and distance ranges).
+
+Example:
+```yaml
+countries_api:
+  DE:
+    static: "https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-berlin/static"
+    dynamic: "https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-berlin/dynamic"
+  FI:
+    static: "https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-helsinki/static"
+    dynamic: "https://consumer-api.development.dev.woltapi.com/home-assignment-api/v1/venues/home-assignment-venue-helsinki/dynamic"
+```
+
+---
+
+### 4. City Acronyms
+Maps city names to their respective country codes for easier lookup.
+
+**Keys:**
+- City names in lowercase (e.g., helsinki, berlin) with their corresponding country codes.
+
+Example:
+```yaml
+cities_acronym:
+  helsinki: "FI"
+  berlin: "DE"
+  stockholm: "SE"
+  tokyo: "JP"
+```
+
+---
+
+### How the Configuration is Used
+**Loading Configuration:**  
+The application loads the `config.yaml` file using the `load_config` function defined in `config_loader.py`. This function parses the YAML file and provides access to its contents as a Python dictionary.
+
+**Logging Configuration:**  
+The logging settings are applied globally during application startup:
+```python
+logging.basicConfig(
+  level=getattr(logging, LOGGING_CONFIG["level"]),
+  format=LOGGING_CONFIG["format"],
+  handlers=[logging.StreamHandler()]
+)
+```
+
+**Dynamic API Selection:**  
+Depending on the venue's country (extracted from the `venue_slug`), the appropriate static and dynamic API endpoints are fetched from the `countries_api` section.
+
+**Constants:**  
+Constants like `SUCCESS`, `FAILURE`, and distance calculation options are used across the application to standardize behavior.
+
+---
+
 ## Future Improvements
 - Add support for additional pricing models and rules.
 - Implement caching for API responses to improve performance.
